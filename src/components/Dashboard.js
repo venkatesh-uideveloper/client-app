@@ -25,10 +25,12 @@ const Dashboard = () => {
     (state) => state.post
   );
   const handleClickViewDetail = (id) => {
-    navigate(`/detail/${id}`);
+    navigate(`/detail`, { state: { id } });
   };
   const handleClickAddEdit = (id) => {
-    navigate(`/addedit${typeof id === "string" ? "/" + id : ""} `);
+    navigate(`/addedit`, {
+      state: { id: typeof id === "string" ? id : null },
+    });
   };
   /**
    * on click delete button in list handler

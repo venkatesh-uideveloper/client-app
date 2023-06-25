@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from "react";
 // import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import { useNavigate, useParams } from "react-router-dom";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import CaptionHeader from "./common/CaptionHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { addPost, getPost, updatePost } from "../actions/post";
@@ -12,7 +12,8 @@ import {
 import Loader from "./common/Loader";
 
 const AddEditComponent = () => {
-  const { id } = useParams();
+  const { state } = useLocation();
+  const { id } = state;
   const dispatch = useDispatch();
 
   const intialPost = {

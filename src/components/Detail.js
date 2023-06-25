@@ -1,13 +1,14 @@
 import React, { memo, useEffect } from "react";
 import CaptionHeader from "./common/CaptionHeader";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPost } from "../actions/post";
 import Loader from "./common/Loader";
 
 const Detail = () => {
-  const { id } = useParams();
+  const { state } = useLocation();
+  const { id } = state;
   const dispatch = useDispatch();
 
   useEffect(() => {
