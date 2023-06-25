@@ -1,4 +1,7 @@
-import { useEffect, lazy, Suspense } from "react";
+import {
+  useEffect,
+  // lazy, Suspense
+} from "react";
 import "./App.css";
 import {
   BrowserRouter,
@@ -18,8 +21,8 @@ import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 import { Provider, useSelector } from "react-redux";
 import store from "./store";
-import Loader from "./components/common/Loader";
 import Alert from "./components/common/Alert";
+// import Loader from "./components/common/Loader";
 
 // const Dashboard = lazy(() => import("./components/Dashboard"));
 // const Register = lazy(() => import("./components/auth/Register"));
