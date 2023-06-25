@@ -16,3 +16,11 @@
   padding: 20px;
   min-height: auto;
 }
+
+.alert {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  width: 22rem;
+  z-index: 9999;
+}

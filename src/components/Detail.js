@@ -26,7 +26,7 @@ const Detail = () => {
         <Loader />
       ) : (
         <main>
-          <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl py-4 px-4 sm:py-6 sm:px-6 lg:px-8">
             <div className="flex px-4 sm:px-0">
               {/* <img
               className="h-14 w-14 flex-none rounded-full bg-gray-50"

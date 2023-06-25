@@ -4,13 +4,19 @@ import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
 import { deletePost } from "../../actions/post";
 
-export default function DeleteModal({ open, setOpen, deleteId }) {
+export default function DeleteModal({
+  open,
+  setOpen,
+  deleteId,
+  limit,
+  pageNumber,
+}) {
   const cancelButtonRef = useRef(null);
   const dispatch = useDispatch();
 
   const handleClickDelete = () => {
     setOpen(false);
-    dispatch(deletePost(deleteId));
+    dispatch(deletePost(deleteId, pageNumber, limit));
   };
 
   return (

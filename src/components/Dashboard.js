@@ -24,30 +24,46 @@ const Dashboard = () => {
   const { posts, loading, data, pagination } = useSelector(
     (state) => state.post
   );
-  // const { user } = useSelector((state) => state.auth);
   const handleClickViewDetail = (id) => {
     navigate(`/detail/${id}`);
   };
   const handleClickAddEdit = (id) => {
     navigate(`/addedit${typeof id === "string" ? "/" + id : ""} `);
   };
+  /**
+   * on click delete button in list handler
+   * @param {id} id
+   */
   const handleClickDelete = (id) => {
     setOpenDeleteModal(true);
     setDeleteId(id);
   };
+  /**
+   * on change update state for search input box
+   * @param {event} e
+   */
   const handleChange = (e) => {
     setValue(e.target.value);
   };
+  /**
+   * common search filter list handler on submit
+   * @param {event} e
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getSearchPosts(value, pageNumber, limit));
   };
+  /**
+   * pagination on click previous page handler
+   */
   const handlePreviousPage = () => {
     if (pageNumber > 0) {
       setPageNumber(pageNumber - 1);
     }
   };
-
+  /**
+   * pagination on click next page handler
+   */
   const handleNextPage = () => {
     const totalPages = Math.ceil(data?.totalPosts / limit);
     if (pageNumber < totalPages - 1) {
@@ -58,7 +74,7 @@ const Dashboard = () => {
     <>
       <CaptionHeader headerName="Dashboard" />
       <main>
-        <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl py-4 px-4 sm:py-6 sm:px-6 lg:px-8">
           <SearchBox
             handleClickAddEdit={handleClickAddEdit}
             handleChange={handleChange}
@@ -86,6 +102,8 @@ const Dashboard = () => {
         open={openDeleteModal}
         setOpen={setOpenDeleteModal}
         deleteId={deleteId}
+        limit={limit}
+        pageNumber={pageNumber}
       />
     </>
   );

@@ -49,7 +49,9 @@ export const getSearchPosts = (key, pageNumber, limit) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    dispatch(
+      setAlert(err.response.statusText + " " + err.response.status, "red")
+    );
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
@@ -58,16 +60,19 @@ export const getSearchPosts = (key, pageNumber, limit) => async (dispatch) => {
 };
 
 // Delete Post
-export const deletePost = (id) => async (dispatch) => {
+export const deletePost = (id, pageNumber, limit) => async (dispatch) => {
   try {
     await axios.delete(`${baseurl}/api/posts/${id}`);
-
     dispatch({
       type: DELETE_POST,
       payload: id,
     });
-    dispatch(setAlert("Post Removed", "success"));
+    dispatch(getPosts(pageNumber, limit));
+    dispatch(setAlert("Post Removed", "green"));
   } catch (err) {
+    dispatch(
+      setAlert(err.response.statusText + " " + err.response.status, "red")
+    );
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
@@ -89,9 +94,12 @@ export const addPost = (formData, callback) => async (dispatch) => {
       type: ADD_POST,
       payload: res.data,
     });
-    dispatch(setAlert("Post Added", "success"));
+    dispatch(setAlert("Post Added", "green"));
     callback();
   } catch (err) {
+    dispatch(
+      setAlert(err.response.statusText + " " + err.response.status, "red")
+    );
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
@@ -107,14 +115,16 @@ export const updatePost = (formData, id, callback) => async (dispatch) => {
   };
   try {
     const res = await axios.put(`${baseurl}/api/posts/${id}`, formData, config);
-    console.log(res);
     // dispatch({
     //   type: ADD_POST,
     //   payload: res.data,
     // });
-    dispatch(setAlert("Post Added", "success"));
+    dispatch(setAlert("Post updated", "green"));
     callback();
   } catch (err) {
+    dispatch(
+      setAlert(err.response.statusText + " " + err.response.status, "red")
+    );
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
@@ -135,6 +145,9 @@ export const getPost = (id) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
+    dispatch(
+      setAlert(err.response.statusText + " " + err.response.status, "red")
+    );
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },

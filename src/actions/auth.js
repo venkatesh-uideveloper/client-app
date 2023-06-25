@@ -55,7 +55,7 @@ export const registerUser =
       const errors = err.response.data.errors;
 
       if (errors) {
-        errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+        errors.forEach((error) => dispatch(setAlert(error.msg, "red")));
       }
       dispatch({
         type: REGISTER_FAIL,
@@ -85,7 +85,7 @@ export const login =
       const errors = err.response.data.errors;
 
       if (errors) {
-        errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+        errors.forEach((error) => dispatch(setAlert(error.msg, "red")));
       }
       dispatch({
         type: LOGIN_FAIL,
