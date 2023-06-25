@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [value, setValue] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
 
-  const limit = 2;
+  const limit = 10;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
