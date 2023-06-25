@@ -8,11 +8,11 @@ import {
   Navigate,
 } from "react-router-dom";
 
-// import Dashboard from "./components/Dashboard";
-// import Register from "./components/auth/Register";
-// import Signin from "./components/auth/Signin";
-// import Detail from "./components/Detail";
-// import AddEditComponent from "./components/AddEditComponent";
+import Dashboard from "./components/Dashboard";
+import Register from "./components/auth/Register";
+import Signin from "./components/auth/Signin";
+import Detail from "./components/Detail";
+import AddEditComponent from "./components/AddEditComponent";
 import Header from "./components/common/Header";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
@@ -21,12 +21,11 @@ import store from "./store";
 import Loader from "./components/common/Loader";
 import Alert from "./components/common/Alert";
 
-const Dashboard = lazy(() => import("./components/Dashboard"));
-const Register = lazy(() => import("./components/auth/Register"));
-const Signin = lazy(() => import("./components/auth/Signin"));
-const Detail = lazy(() => import("./components/Detail"));
-// const Header = lazy(() => import("./components/common/Header"));
-const AddEditComponent = lazy(() => import("./components/AddEditComponent"));
+// const Dashboard = lazy(() => import("./components/Dashboard"));
+// const Register = lazy(() => import("./components/auth/Register"));
+// const Signin = lazy(() => import("./components/auth/Signin"));
+// const Detail = lazy(() => import("./components/Detail"));
+// const AddEditComponent = lazy(() => import("./components/AddEditComponent"));
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -46,58 +45,58 @@ function App() {
             <Route
               path="/"
               element={
-                <Suspense fallback={<Loader />}>
-                  <Signin />
-                </Suspense>
+                // <Suspense fallback={<Loader />}>
+                <Signin />
+                // </Suspense>
               }
             />
             <Route
               path="/register"
               element={
-                <Suspense fallback={<Loader />}>
-                  <Register />
-                </Suspense>
+                // <Suspense fallback={<Loader />}>
+                <Register />
+                // </Suspense>
               }
             />
             <Route element={<Layout />}>
               <Route
                 path="/dashboard"
                 element={
-                  <Suspense fallback={<Loader />}>
-                    <RequireAuth>
-                      <Dashboard />
-                    </RequireAuth>
-                  </Suspense>
+                  // <Suspense fallback={<Loader />}>
+                  <RequireAuth>
+                    <Dashboard />
+                  </RequireAuth>
+                  // </Suspense>
                 }
               />
               <Route
                 path="/detail/:id"
                 element={
-                  <Suspense fallback={<Loader />}>
-                    <RequireAuth>
-                      <Detail />
-                    </RequireAuth>
-                  </Suspense>
+                  // <Suspense fallback={<Loader />}>
+                  <RequireAuth>
+                    <Detail />
+                  </RequireAuth>
+                  // </Suspense>
                 }
               />
               <Route
                 path="/addedit"
                 element={
-                  <Suspense fallback={<Loader />}>
-                    <RequireAuth>
-                      <AddEditComponent />
-                    </RequireAuth>
-                  </Suspense>
+                  // <Suspense fallback={<Loader />}>
+                  <RequireAuth>
+                    <AddEditComponent />
+                  </RequireAuth>
+                  // </Suspense>
                 }
               />
               <Route
                 path="/addedit/:id"
                 element={
-                  <Suspense fallback={<Loader />}>
-                    <RequireAuth>
-                      <AddEditComponent />
-                    </RequireAuth>
-                  </Suspense>
+                  // <Suspense fallback={<Loader />}>
+                  <RequireAuth>
+                    <AddEditComponent />
+                  </RequireAuth>
+                  // </Suspense>
                 }
               />
             </Route>
